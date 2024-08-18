@@ -50,6 +50,37 @@ userRoute.post("/signup", async (req, res) => {
   })
 })
 
-userRoute.post("/signin", (req, res) => {
-  
+
+const signinSchema = zod.object({
+  username: zod.string().email(),
+  password: zod.string()
+})
+
+userRoute.post("/signin", async (req, res) => {
+  const {success} = signinSchema.safeParse(req.body);
+  if(!success){
+    res.status(411).json({
+      messege: "Incorrect Inputs"
+    })
+  }
+
+  const user = await findOne({
+    username: req.body.username,
+    password: req.body.password
+  });
+
+  if(user){
+    const token = jwt.sign({
+      userId: user._id
+    }, JWT_SECRET);
+
+    res.json({
+      token: token
+    })
+    return;
+  }
+
+  res.status(411).json({
+    messege: "Error while logging in"
+  })
 })

@@ -7,6 +7,4 @@ const { authMiddleware } = require("../middleware");
 router.use("/user", userRouter);
 router.use("/account", accountRouter);
 
-module.exports = {
-  router,
-};
+module.exports = router;

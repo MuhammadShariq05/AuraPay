@@ -63,7 +63,7 @@ userRoute.post("/signup", async (req, res) => {
 });
 
 const signinSchema = zod.object({
-  username: zod.string().email(),
+  username: zod.string(),
   password: zod.string(),
 });
 

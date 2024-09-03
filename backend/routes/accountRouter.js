@@ -5,7 +5,6 @@ const { startSession } = require("mongoose");
 const router = express.Router();
 
 
-router.use()
 router.get("/balance", authMiddleware, async (req, res) => {
   const account = await Account.findOne({
     userId: req.userId,

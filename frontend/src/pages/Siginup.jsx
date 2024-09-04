@@ -4,11 +4,16 @@ import { SubHeading } from "../components/SubHeading";
 import { InputBox } from "../components/InputBox";
 import { Button } from "../components/Button";
 import { WarningText } from "../components/WarningText";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 export const Siginup = () => {
   const [firstName, setFirstName] = useState("");
   const [lasrName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("")
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="bg-slate-300 h-screen flex justify-center">
@@ -45,7 +50,16 @@ export const Siginup = () => {
               onChange={e => setPassword(e.target.value)}
             />
             <div className="mt-5 bg-slate-900 border rounded-lg shadow-sm">
-              <Button label={"Sign up"} />
+              <Button onClick={async () =>{
+                const response = await axios.post("http://localhost:3000/api/v1/user/signup", {
+                  userName,
+                  firstName,
+                  lasrName,
+                  password
+                }).then()
+                localStorage.getItem("token", response.data.token)
+                navigate("/dashboard")
+              }} label={"Sign up"} />
             </div>
             <WarningText label={`Already have an account? Sign in`}/>
           </div>

@@ -26,42 +26,51 @@ export const Siginup = () => {
               label={"First Name"}
               placeholder={"John"}
               type="text"
-              onChange={e => setFirstName(e.target.value)}
+              onChange={(e) => setFirstName(e.target.value)}
             />
 
             <InputBox
               label={"Last Lame"}
               placeholder={"Dae"}
               type="text"
-              onChange={e => setLastName(e.target.value)}
+              onChange={(e) => setLastName(e.target.value)}
             />
 
             <InputBox
               label={"User Name"}
               placeholder={"johndae123"}
               type="text"
-              onChange={e => setUserName(e.target.value)}
+              onChange={(e) => setUserName(e.target.value)}
             />
 
             <InputBox
               label={"Password"}
               placeholder={"12345"}
               type="password"
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <div className="mt-5 bg-slate-900 border rounded-lg shadow-sm">
-              <Button onClick={async () =>{
-                const response = await axios.post("http://localhost:3000/api/v1/user/signup", {
-                  userName,
-                  firstName,
-                  lasrName,
-                  password
-                }).then()
-                localStorage.getItem("token", response.data.token)
-                navigate("/dashboard")
-              }} label={"Sign up"} />
+              <Button
+                onClick={async () => {
+                  const response = await axios
+                    .post("http://localhost:3000/api/v1/user/signup", {
+                      userName,
+                      firstName,
+                      lasrName,
+                      password,
+                    })
+                    .then();
+                  localStorage.getItem("token", response.data.token);
+                  navigate("/dashboard");
+                }}
+                label={"Sign up"}
+              />
             </div>
-            <WarningText label={`Already have an account? Sign in`}/>
+            <WarningText
+              label={"Already have an account?"}
+              buttonText={"Sign in"}
+              to={"/signin"}
+            />
           </div>
         </div>
       </div>

@@ -8,7 +8,6 @@ import { SendMoney } from './pages/SendMoney'
 function App() {
   return (
     <>
-      <div className='bg-red-500'>Home page</div>
       {console.log("line 17")}
       <BrowserRouter>
         <Routes>

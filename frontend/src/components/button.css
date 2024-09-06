@@ -1,43 +1,36 @@
-/* From Uiverse.io by JkHuger */
 .sparkle-button {
   --active: 0;
   --bg: radial-gradient(
-      40% 50% at center 100%,
-      hsl(270 calc(var(--active) * 97%) 72% / var(--active)),
-      transparent
-    ),
-    radial-gradient(
-      80% 100% at center 120%,
-      hsl(260 calc(var(--active) * 97%) 70% / var(--active)),
-      transparent
-    ),
-    hsl(260 calc(var(--active) * 97%) calc((var(--active) * 44%) + 12%));
+			30% 40% at center 100%,
+			hsl(79 calc(var(--active) * 97%) 72% / var(--active)),
+			transparent
+		),
+		radial-gradient(
+			80% 100% at center 120%,
+			hsl(60 calc(var(--active) * 97%) 70% / var(--active)),
+			transparent
+		),
+		hsl(39 calc(var(--active) * 97%) calc((var(--active) * 44%) + 12%));
   background: var(--bg);
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   font-weight: 500;
-  border: 0;
+  border: none;
   cursor: pointer;
   padding: 1em 1em;
   display: flex;
   align-items: center;
   gap: 0.25em;
   white-space: nowrap;
-  border-radius: 100px;
+  border-radius: 15px;
   position: relative;
-  box-shadow: 0 0 calc(var(--active) * 3em) calc(var(--active) * 1em)
-      hsl(260 97% 61% / 0.75),
-    0 0em 0 0
-      hsl(260 calc(var(--active) * 97%) calc((var(--active) * 50%) + 30%)) inset,
-    0 -0.05em 0 0 hsl(260 calc(var(--active) * 97%) calc(var(--active) * 60%)) inset;
-  transition: box-shadow var(--transition), scale var(--transition),
-    background var(--transition);
+  transition: box-shadow var(--transition), scale var(--transition), background var(--transition);
   scale: calc(1 + (var(--active) * 0.1));
-  transition: 0.3s;
+  transition: .3s;
 }
 
 .sparkle-button:active {
   scale: 1;
-  transition: 0.3s;
+  transition: .3s;
 }
 
 .sparkle path {
@@ -56,20 +49,19 @@
 }
 
 @keyframes bounce {
-  35%,
-  65% {
+  35%, 65% {
     scale: var(--scale);
   }
 }
 
 .sparkle path:nth-of-type(1) {
-  --scale: 0.5;
+  --scale: 0.3;
   --delay: 0.1;
   --base: 40%;
 }
 
 .sparkle path:nth-of-type(2) {
-  --scale: 1.5;
+  --scale: 1.0;
   --delay: 0.2;
   --base: 20%;
 }
@@ -85,7 +77,6 @@
   position: absolute;
   inset: -0.2em;
   z-index: -1;
-  border: 0.25em solid hsl(260 97% 50% / 0.5);
   border-radius: 100px;
   opacity: var(--active, 0);
   transition: opacity var(--transition);
@@ -119,7 +110,11 @@
   rotate: 0;
   transform: rotate(-90deg);
   opacity: calc((var(--active)) + 0.4);
-  background: conic-gradient(from 0deg, transparent 0 340deg, white 360deg);
+  background: conic-gradient(
+		from 0deg,
+		transparent 0 340deg,
+		white 360deg
+	);
   transition: opacity var(--transition);
   animation: rotate var(--spark) linear infinite both;
 }
@@ -145,7 +140,7 @@
   }
 }
 
-@supports (selector(:has(:is(+ *)))) {
+@supports(selector(:has(:is(+ *)))) {
   body:has(button:is(:hover, :focus-visible)) {
     --active: 1;
     --play-state: running;
@@ -172,7 +167,7 @@
 
 .particle-pen {
   position: absolute;
-  width: 200%;
+  width: 100%;
   aspect-ratio: 1;
   top: 50%;
   left: 50%;
@@ -191,8 +186,7 @@
   top: calc(var(--y) * 1%);
   left: calc(var(--x) * 1%);
   opacity: var(--alpha, 1);
-  animation: float-out calc(var(--duration, 1) * 1s) calc(var(--delay) * -1s)
-    infinite linear;
+  animation: float-out calc(var(--duration, 1) * 1s) calc(var(--delay) * -1s) infinite linear;
   transform-origin: var(--origin-x, 1000%) var(--origin-y, 1000%);
   z-index: -1;
   animation-play-state: var(--play-state, paused);
@@ -216,11 +210,7 @@
 .text {
   translate: 2% -6%;
   letter-spacing: 0.01ch;
-  background: linear-gradient(
-    90deg,
-    hsl(0 0% calc((var(--active) * 100%) + 65%)),
-    hsl(0 0% calc((var(--active) * 100%) + 26%))
-  );
+  background: linear-gradient(90deg, hsl(0 0% calc((var(--active) * 100%) + 65%)), hsl(0 0% calc((var(--active) * 100%) + 26%)));
   -webkit-background-clip: text;
   color: transparent;
   transition: background var(--transition);

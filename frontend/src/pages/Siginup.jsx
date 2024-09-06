@@ -49,7 +49,7 @@ export const Siginup = () => {
               type="password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <div className="mt-5 bg-slate-900 border rounded-lg shadow-sm">
+            <div className="mt-5 bg-slate-900 border rounded-lg shadow-sm text-white">
               <Button
                 onClick={async () => {
                   const response = await axios

@@ -31,7 +31,7 @@ export const Signin = () => {
               type="password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <div className="bg-slate-900 p-1 mt-5 ml-10 mr-10 rounded-lg">
+            <div className="bg-slate-900 p-1 mt-5 ml-10 mr-10 rounded-lg text-white">
               <Button
                 onClick={async () => {
                   try {

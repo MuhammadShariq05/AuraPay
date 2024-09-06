@@ -1,5 +1,7 @@
 import React from 'react'
-import { AppBar } from '../components/AppBar'
+import { NavBar } from '../components/homepage-components/NavBar'
+import { Hero } from '../components/homepage-components/Hero'
+
 
 export const HomePage = () => {
   // Appbar
@@ -8,8 +10,9 @@ export const HomePage = () => {
   // 
 
   return (
-    <div className='flex'>
-      <AppBar />
+    <div >
+      <NavBar />
+      <Hero />
     </div>
   )
 }

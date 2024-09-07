@@ -7,13 +7,13 @@ import { WarningText } from "../components/WarningText";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
 export const Siginup = () => {
   const [firstName, setFirstName] = useState("");
   const [lasrName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
   return (
     <>
       <div className="bg-slate-300 h-screen flex justify-center">

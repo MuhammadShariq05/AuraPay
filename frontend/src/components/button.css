@@ -1,222 +1,116 @@
-.sparkle-button {
-  --active: 0;
-  --bg: radial-gradient(
-			30% 40% at center 100%,
-			hsl(79 calc(var(--active) * 97%) 72% / var(--active)),
-			transparent
-		),
-		radial-gradient(
-			80% 100% at center 120%,
-			hsl(60 calc(var(--active) * 97%) 70% / var(--active)),
-			transparent
-		),
-		hsl(39 calc(var(--active) * 97%) calc((var(--active) * 44%) + 12%));
-  background: var(--bg);
-  font-size: 1.0rem;
-  font-weight: 500;
-  border: none;
+/* From Uiverse.io by Madflows */ 
+.button {
+  position: relative;
+  overflow: hidden;
+  height: 3rem;
+  padding: 0 2rem;
+  border-radius: 1.30rem;
+  background: #2e2e30;
+  background-size: 400%;
+  color: #fff;
+  border: 2px solid rgb(29, 29, 29);
   cursor: pointer;
-  padding: 1em 1em;
+  font-weight: 700;
+}
+
+.button:hover::before {
+  transform: scaleX(1);
+}
+.button:hover{
+  font-weight: 800;
+  color: #2e2e30;
+}
+.button-content {
+  position: relative;
+  z-index: 1;
+
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: 0 70%;
+  width: 100%;
+  height: inherit;
+  background: linear-gradient(
+    82.3deg,
+    #ff0000 10.8%,
+    #ff0000 94.3%
+  );
+  transition: all 0.575s;
+}
+
+/* From Uiverse.io by dylanharriscameron */ 
+.card {
+  position: relative;
+  width: 500px;
+  height: 250px;
+  border-radius: 14px;
+  z-index: 1;
+  overflow: hidden;
   display: flex;
   align-items: center;
-  gap: 0.25em;
-  white-space: nowrap;
-  border-radius: 15px;
-  position: relative;
-  transition: box-shadow var(--transition), scale var(--transition), background var(--transition);
-  scale: calc(1 + (var(--active) * 0.1));
-  transition: .3s;
+  justify-content: center;
+  box-shadow: 20px 20px 60px #c9bfbf, -20px -20px 60px #fad3d3;
 }
 
-.sparkle-button:active {
-  scale: 1;
-  transition: .3s;
-}
-
-.sparkle path {
-  color: hsl(0 0% calc((var(--active, 0) * 70%) + var(--base)));
-  transform-box: fill-box;
-  transform-origin: center;
-  fill: currentColor;
-  stroke: currentColor;
-  animation-delay: calc((var(--transition) * 1.5) + (var(--delay) * 1s));
-  animation-duration: 0.6s;
-  transition: color var(--transition);
-}
-
-.sparkle-button:is(:hover, :focus-visible) path {
-  animation-name: bounce;
-}
-
-@keyframes bounce {
-  35%, 65% {
-    scale: var(--scale);
-  }
-}
-
-.sparkle path:nth-of-type(1) {
-  --scale: 0.3;
-  --delay: 0.1;
-  --base: 40%;
-}
-
-.sparkle path:nth-of-type(2) {
-  --scale: 1.0;
-  --delay: 0.2;
-  --base: 20%;
-}
-
-.sparkle path:nth-of-type(3) {
-  --scale: 2.5;
-  --delay: 0.35;
-  --base: 30%;
-}
-
-.sparkle-button:before {
-  content: "";
+.bg {
   position: absolute;
-  inset: -0.2em;
-  z-index: -1;
-  border-radius: 100px;
-  opacity: var(--active, 0);
-  transition: opacity var(--transition);
-}
-
-.spark {
-  position: absolute;
-  inset: 0;
-  border-radius: 100px;
-  rotate: 0deg;
+  top: 5px;
+  left: 5px;
+  width: 500px;
+  height: 240px;
+  z-index: 2;
+  background: rgba(255, 255, 255, .95);
+  backdrop-filter: blur(24px);
+  border-radius: 10px;
   overflow: hidden;
-  mask: linear-gradient(white, transparent 50%);
-  animation: flip calc(var(--spark) * 2) infinite steps(2, end);
+  outline: 2px solid white;
+  
+  /* Flexbox centering */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;  /* Adjust font size as needed */
+  font-weight: bold;
+  color: #333; /* Adjust text color */
 }
 
-@keyframes flip {
-  to {
-    rotate: 360deg;
-  }
-}
-
-.spark:before {
-  content: "";
+.blob {
   position: absolute;
-  width: 200%;
-  aspect-ratio: 1;
-  top: 0%;
-  left: 50%;
-  z-index: -1;
-  translate: -50% -15%;
-  rotate: 0;
-  transform: rotate(-90deg);
-  opacity: calc((var(--active)) + 0.4);
-  background: conic-gradient(
-		from 0deg,
-		transparent 0 340deg,
-		white 360deg
-	);
-  transition: opacity var(--transition);
-  animation: rotate var(--spark) linear infinite both;
-}
-
-.spark:after {
-  content: "";
-  position: absolute;
-  inset: var(--cut);
-  border-radius: 100px;
-}
-
-.backdrop {
-  position: absolute;
-  inset: var(--cut);
-  background: var(--bg);
-  border-radius: 100px;
-  transition: background var(--transition);
-}
-
-@keyframes rotate {
-  to {
-    transform: rotate(90deg);
-  }
-}
-
-@supports(selector(:has(:is(+ *)))) {
-  body:has(button:is(:hover, :focus-visible)) {
-    --active: 1;
-    --play-state: running;
-  }
-
-  .bodydrop {
-    display: none;
-  }
-}
-
-.sparkle-button:is(:hover, :focus-visible) ~ :is(.bodydrop, .particle-pen) {
-  --active: 1;
-  --play-state: runnin;
-}
-
-.sparkle-button:is(:hover, :focus-visible) {
-  --active: 1;
-  --play-state: running;
-}
-
-.sp {
-  position: relative;
-}
-
-.particle-pen {
-  position: absolute;
-  width: 100%;
-  aspect-ratio: 1;
+  z-index: 1;
   top: 50%;
   left: 50%;
-  translate: -50% -50%;
-  -webkit-mask: radial-gradient(white, transparent 65%);
-  z-index: -1;
-  opacity: var(--active, 0);
-  transition: opacity var(--transition);
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  opacity: 1;
+  filter: blur(12px);
+  animation: blob-bounce 5s infinite ease;
 }
 
-.particle {
-  fill: white;
-  width: calc(var(--size, 0.25) * 1rem);
-  aspect-ratio: 1;
-  position: absolute;
-  top: calc(var(--y) * 1%);
-  left: calc(var(--x) * 1%);
-  opacity: var(--alpha, 1);
-  animation: float-out calc(var(--duration, 1) * 1s) calc(var(--delay) * -1s) infinite linear;
-  transform-origin: var(--origin-x, 1000%) var(--origin-y, 1000%);
-  z-index: -1;
-  animation-play-state: var(--play-state, paused);
-}
-
-.particle path {
-  fill: hsl(0 0% 90%);
-  stroke: none;
-}
-
-.particle:nth-of-type(even) {
-  animation-direction: reverse;
-}
-
-@keyframes float-out {
-  to {
-    rotate: 360deg;
+@keyframes blob-bounce {
+  0% {
+    transform: translate(-250%, -125%) translate3d(0, 0, 0);  /* Start off-screen */
   }
-}
 
-.text {
-  translate: 2% -6%;
-  letter-spacing: 0.01ch;
-  background: linear-gradient(90deg, hsl(0 0% calc((var(--active) * 100%) + 65%)), hsl(0 0% calc((var(--active) * 100%) + 26%)));
-  -webkit-background-clip: text;
-  color: transparent;
-  transition: background var(--transition);
-}
+  25% {
+    transform: translate(-250%, -125%) translate3d(300%, 0, 0);  /* Move horizontally across the card */
+  }
 
-.sparkle-button svg {
-  inline-size: 1.25em;
-  translate: -25% -5%;
+  50% {
+    transform: translate(-250%, -125%) translate3d(300%, 155%, 0);  /* Move diagonally across the card */
+  }
+
+  75% {
+    transform: translate(-250%, -125%) translate3d(0, 125%, 0);  /* Move back to the bottom */
+  }
+
+  100% {
+    transform: translate(-250%, -125%) translate3d(0, 0, 0);  /* Back to original position */
+  }
 }

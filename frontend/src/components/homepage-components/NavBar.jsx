@@ -11,7 +11,7 @@ export const NavBar = () => {
         <div className="container flex justify-center items-center">
           <div className="hidden md:block">
             <ul className="flex font-semibold justify-center items-center gap-4">
-              <li className="text-gray-900 px-3 py-2">
+              <li className="text-gray-900 px-2 py-2">
                 <ButtonNav
                   onClick={async () => {
                     navigate("/signup");

@@ -1,18 +1,32 @@
+import { useNavigate } from "react-router-dom";
 
-export const Appbar = ({username}) => {
-  return <div className="shadow h-14 flex justify-between">
-      <div className="flex flex-col justify-center h-full ml-4">
-          AuraPay
+export const Appbar = ({ username }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Handle logout logic
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
+  return (
+    <div className="shadow-lg h-16 flex justify-between items-center px-6 bg-gray-800 text-white">
+      {/* AuraPay Logo */}
+      <div className="text-2xl font-bold">AuraPay</div>
+
+      {/* User Greeting and Username */}
+      <div className="flex-grow flex items-center justify-center space-x-4">
+        <div className="text-lg">Hello,</div>
+        <div className="text-xl font-semibold">{username}</div>
       </div>
-      <div className="flex">
-          <div className="flex justify-center mt-3">
-              Hello 
-          </div>
-          <div className="flex flex-col justify-center items-center">
-              <div className="flex justify-center mb-3 mx-5 text-2xl font-bold">
-                  {username}
-              </div>
-          </div>
-      </div>
-  </div>
-}
+
+      {/* Logout Button */}
+      <button
+        onClick={handleLogout}
+        className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-full transition duration-300"
+      >
+        Logout
+      </button>
+    </div>
+  );
+};

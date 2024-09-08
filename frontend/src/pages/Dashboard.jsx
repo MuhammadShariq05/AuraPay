@@ -3,6 +3,7 @@ import { Balance } from "../components/Balance"
 import { Users } from "../components/Users"
 import { useSearchParams } from "react-router-dom"
 
+
 export const Dashboard = () => {
   const [searchParams] = useSearchParams();
 

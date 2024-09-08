@@ -10,8 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 export const Siginup = () => {
   const [firstName, setFirstName] = useState("");
-  const [lasrName, setLastName] = useState("");
-  const [userName, setUserName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   return (
@@ -54,13 +54,13 @@ export const Siginup = () => {
                 onClick={async () => {
                   const response = await axios
                     .post("http://localhost:3000/api/v1/user/signup", {
-                      userName,
+                      username,
                       firstName,
-                      lasrName,
+                      lastName,
                       password,
                     })
                     .then();
-                  localStorage.getItem("token", response.data.token);
+                  localStorage.setItem("token", response.data.token);
                   navigate("/dashboard");
                 }}
                 label={"Sign up"}

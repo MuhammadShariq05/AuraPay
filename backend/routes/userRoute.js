@@ -75,7 +75,7 @@ userRoute.post("/signin", async (req, res) => {
     });
   }
 
-  const user = await findOne({
+  const user = await User.findOne({
     username: req.body.username,
     password: req.body.password,
   });

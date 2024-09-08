@@ -2,11 +2,7 @@
 const mongoose = require("mongoose");
 const { MongoClient } = require("mongodb");
 
-const mongoURI = "mongodb://127.0.0.1:27017/paytm?" + "replicaSet=rs0";
-// Connect to MongoDB with the replica set
-MongoClient.connect(mongoURI, { useNewUrlParser: true })
-  .then(() => console.log("Connected to MongoDB Replica Set"))
-  .catch((err) => console.error("Error connecting to MongoDB:", err));
+mongoose.connect("mongodb://127.0.0.1:27017/paytm")
 
 // Create a Schema for Users
 const userSchema = new mongoose.Schema({

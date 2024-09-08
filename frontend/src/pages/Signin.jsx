@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 
 export const Signin = () => {
-  const [userName, setUserName] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -38,11 +38,11 @@ export const Signin = () => {
                   try {
                     const response = await axios
                       .post("http://localhost:3000/api/v1/user/signin", {
-                        userName,
+                        username,
                         password,
                       })
                       .then();
-                    localStorage.getItem("token", response.data.token);
+                    localStorage.setItem("token", response.data.token);
                     navigate("/dashboard");
                   } catch (error) {
                     console.log("Error during sign in:", error)

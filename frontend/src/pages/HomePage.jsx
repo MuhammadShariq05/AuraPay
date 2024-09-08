@@ -6,7 +6,7 @@ export const HomePage = () => {
 
   return (
     <>
-      <main className="bg-slate-300 h-screen flex justify-center">
+      <main className="bg-white h-screen flex justify-center">
         <NavBar />
         <Hero />
       </main>

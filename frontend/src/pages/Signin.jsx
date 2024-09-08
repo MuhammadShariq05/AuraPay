@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Heading } from "../components/Heading";
 import { SubHeading } from "../components/SubHeading";
 import { InputBox } from "../components/InputBox";
@@ -12,7 +12,7 @@ export const Signin = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
+  
   return (
     <>
       <div className="bg-slate-300 h-screen flex justify-center">
@@ -41,9 +41,10 @@ export const Signin = () => {
                         username,
                         password,
                       })
-                      .then();
+                    console.log(response);
+                    const { userId, username: signedInUserName } = response.data
                     localStorage.setItem("token", response.data.token);
-                    navigate("/dashboard");
+                    navigate(`/dashboard?id=${userId}&name=${signedInUserName}`);
                   } catch (error) {
                     console.log("Error during sign in:", error)
                   }

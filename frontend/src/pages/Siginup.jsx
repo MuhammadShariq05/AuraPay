@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Heading } from "../components/Heading";
 import { SubHeading } from "../components/SubHeading";
 import { InputBox } from "../components/InputBox";
@@ -7,12 +7,12 @@ import { WarningText } from "../components/WarningText";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 export const Siginup = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
   return (
     <>
@@ -52,16 +52,19 @@ export const Siginup = () => {
             <div className="mt-5 bg-slate-900 border rounded-lg shadow-sm text-white">
               <Button
                 onClick={async () => {
-                  const response = await axios
-                    .post("http://localhost:3000/api/v1/user/signup", {
+                  const response = await axios.post(
+                    "http://localhost:3000/api/v1/user/signup",
+                    {
                       username,
                       firstName,
                       lastName,
                       password,
-                    })
-                    .then();
+                    }
+                  );
+
+                  const { userId, username: signedInUserName } = response.data;
                   localStorage.setItem("token", response.data.token);
-                  navigate("/dashboard");
+                  navigate(`/dashboard?id=${userId}&name=${signedInUserName}`);
                 }}
                 label={"Sign up"}
               />

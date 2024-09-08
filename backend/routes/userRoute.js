@@ -57,6 +57,8 @@ userRoute.post("/signup", async (req, res) => {
     JWT_SECRET
   );
   res.json({
+    userId: user._id,
+    username: user.username,
     messege: "User created successfully",
     token: token,
   });
@@ -89,6 +91,8 @@ userRoute.post("/signin", async (req, res) => {
     );
 
     res.json({
+      userId: user._id,
+      username: user.username,
       token: token,
     });
     return;

@@ -41,16 +41,16 @@ function User({ user }) {
   return (
     <>
       <div className="flex justify-between">
-        <div className="flex">
+        <div className="flex p-2">
           <div className="rounded-full h-12 w-12 bg-slate-200 flex justify-center mt-1 mr-2">
           </div>
-          <div>
-            <div>
+          <div className="">
+            <div className="mt-4">
               {user.firstName} {user.lastName}
             </div>
           </div>
         </div>
-        <div>
+        <div className="py-3 mt-2">
           <Button
             onClick={(e) => {
               navigate("/send?id=" + user._id + "&name=" + user.firstName);

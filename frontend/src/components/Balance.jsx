@@ -1,17 +1,32 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
-export const Balance = ({value}) => {
+export const Balance = () => {
   const [balance, setBalance] = useState("")
   useEffect(() => {
-    axios.get("http://localhost:3000/api/v1/account/balance")
-  })
+    const fetchBalance = async () => {
+      try{
+        const token = localStorage.getItem("token");
+
+        const response = await axios.get("http://localhost:3000/api/v1/account/balance", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        })
+        const formatBalance = parseFloat(response.data.balance).toFixed(2);
+        setBalance(formatBalance)
+      }catch{
+        console.log("Error Fetching balance: ", error);
+      }
+    }
+    fetchBalance()
+  }, [])
   return <div className="flex">
       <div className="font-bold text-lg">
-          Your balance
+          Your balance:
       </div>
       <div className="font-semibold ml-4 text-lg">
-          Rs {value}
+          Rs {balance}
       </div>
   </div>
 }
